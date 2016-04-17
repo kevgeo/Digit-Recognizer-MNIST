@@ -14,9 +14,9 @@ class Network(object):
 
     def feedforward(self, a):
         """Return the output of the network if ``a`` is input."""
-        z = np.dot(w, a)+b
-        z = z/100.0
         for b, w in zip(self.biases, self.weights):
+            z = np.dot(w, a)+b
+            z = z/100.0
             a = sigmoid(z)
         return a
 
