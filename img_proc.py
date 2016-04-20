@@ -13,12 +13,15 @@ import mnist_loader
 
 training_data, validation_data, test_data =  mnist_loader.load_data_wrapper()
 net = network.Network([784, 100, 10])
-net.SGD(training_data, 20, 10, 3.0, test_data=test_data)
-pickle.dump(net.biases,open("biases.npy","wb"))
-pickle.dump(net.weights,open("weights.npy","wb"))
+net.SGD(training_data, 40, 10, 3.0, test_data=test_data)
+pickle.dump(net.biases,open("biases2.npy","wb"))
+pickle.dump(net.weights,open("weights2.npy","wb"))
 #------------------------------------------------------------------------------------
-
+#path = input("ENter image path")
 image = cv2.imread("images/img19.jpg")
+#def upload(pat):
+#	path=pat
+#image = cv2.imread(path)
 
 #-> outputs rows,columns, and channel-if 3 means RGB
 print image.shape

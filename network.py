@@ -6,14 +6,14 @@ class Network(object):
     def __init__(self, sizes):
         self.num_layers = len(sizes)
         self.sizes = sizes
-        #-> randn gradientenerates random floats  
+        #-> randn generates random floats  
         #   and returns an ndarray
         self.biases = [np.random.randn(y, 1) for y in sizes[1:]]    
         self.weights = [np.random.randn(y, x)
                         for x, y in zip(sizes[:-1], sizes[1:])]
 
     def feedforward(self, a):
-        """Return the output of the network if ``a`` is input."""
+        #-> Return the output of the network if ``a`` is input
         for b, w in zip(self.biases, self.weights):
             z = np.dot(w, a)+b
             z = z/100.0
@@ -63,17 +63,11 @@ class Network(object):
             zs.append(z)
             activation = sigmoid(z)
             activations.append(activation)
-        # backward pass
+        #-> backward pass
         delta = self.cost_derivative(activations[-1], y) * \
             sigmoid_prime(zs[-1])
         nabla_b[-1] = delta
         nabla_w[-1] = np.dot(delta, activations[-2].transpose())
-        # Note that the variable l in the loop below is used a little
-        # differently to the notation in Chapter 2 of the book.  Here,
-        # l = 1 means the last layer of neurons, l = 2 is the
-        # second-last layer, and store on.  It's a renumbering of the
-        # scheme in the book, used here to take advantage of the fact
-        # that Python can use negative indices in lists.
         for l in xrange(2, self.num_layers):
             z = zs[-l]
             sp = sigmoid_prime(z)
@@ -96,11 +90,12 @@ class Network(object):
         \partial a for the output activations."""
         return (output_activations-y)
 
-#Not part of Network class
+
+#-> Not part of Network class
 def sigmoid(z):
     return 1.0/(1.0+np.exp(-z))
 
 def sigmoid_prime(z):
-    """Derivative of the sigmoid function."""
+    #-> Derivative of the sigmoid function
     return sigmoid(z)*(1-sigmoid(z))
 
