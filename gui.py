@@ -21,7 +21,7 @@ def capturecallback():
     camera_port = 0
     camera = cv2.VideoCapture(camera_port)
     return_value, image = camera.read()
-    cv2.imwrite("opencv.png", image)
+    cv2.imwrite("opencv.jpg", image)
     del (camera)
 label1= Label(top,text='Whats that digit?')
 top.geometry('1600x800')
